@@ -9,7 +9,7 @@
     />
     <title>Sign Up - OnyXLuxe Tickets</title>
     <link
-      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="Signup.css" />
@@ -23,28 +23,42 @@
           <p>Welcome! Please enter your details.</p>
         </header>
 
-        <form class="signup-form" novalidate>
+        <form class="signup-form">
           <div class="input-group">
             <label for="name">Name</label>
-            <input type="text" id="name" placeholder="Enter your name" />
+            <input
+              type="text"
+              id="name"
+              placeholder="Enter your name"
+              autocomplete="name"
+              required
+            />
           </div>
 
           <div class="input-group">
             <label for="email">Email</label>
-            <input type="email" id="email" placeholder="Enter your email" />
+            <input
+              type="email"
+              id="email"
+              placeholder="Enter your email"
+              autocomplete="email"
+              required
+            />
           </div>
 
           <div class="input-group">
             <label for="password">Password</label>
-            <input type="password" id="password" placeholder="Password" />
+            <input
+              type="password"
+              id="password"
+              placeholder="At least 8 characters"
+              autocomplete="new-password"
+              minlength="8"
+              required
+            />
           </div>
 
           <button type="submit" class="btn-primary">Sign up</button>
-
-          <button type="button" class="btn-google">
-            <i class="bx bxl-google"></i>
-            Sign up with Google
-          </button>
         </form>
 
         <footer class="form-footer">

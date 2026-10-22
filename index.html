@@ -262,6 +262,55 @@
       </div>
     </section>
 
+    <dialog class="event-preview-dialog" aria-labelledby="preview-title">
+      <article class="event-preview-card">
+        <button
+          class="preview-close-button"
+          type="button"
+          aria-label="Close event details"
+        >
+          &times;
+        </button>
+        <img class="preview-banner" src="" alt="" />
+        <div class="preview-content">
+          <p class="preview-eyebrow">EVENT DETAILS</p>
+          <h2 id="preview-title"></h2>
+          <p class="preview-description"></p>
+          <div class="preview-countdown" aria-live="polite">
+            <span class="preview-countdown-label">Countdown</span>
+            <strong class="preview-countdown-value"></strong>
+          </div>
+          <dl class="preview-facts">
+            <div>
+              <dt>Date</dt>
+              <dd class="preview-date"></dd>
+            </div>
+            <div>
+              <dt>Time</dt>
+              <dd class="preview-time"></dd>
+            </div>
+            <div>
+              <dt>Location</dt>
+              <dd class="preview-location"></dd>
+            </div>
+            <div>
+              <dt>Presented by</dt>
+              <dd class="preview-host"></dd>
+            </div>
+          </dl>
+          <div class="preview-purchase-row">
+            <p class="preview-price">
+              <span>Ticket price</span>
+              <strong>₦5,000 <small>/ person</small></strong>
+            </p>
+            <button class="preview-buy-button" type="button">
+              Buy Ticket
+            </button>
+          </div>
+        </div>
+      </article>
+    </dialog>
+
     <footer>
       <div class="footer-container">
         <div class="footer-social">

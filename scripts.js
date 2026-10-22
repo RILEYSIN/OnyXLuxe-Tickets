@@ -1,67 +1,124 @@
-// scripts.js - JavaScript for OnyXLuxe Tickets homepage
-
 document.addEventListener("DOMContentLoaded", function () {
-  // Get all preview buttons
-  const previewButtons = document.querySelectorAll(".preview-button");
-  previewButtons.forEach((button) => {
+  const previewDialog = document.querySelector(".event-preview-dialog");
+  const closePreviewButton = previewDialog.querySelector(
+    ".preview-close-button"
+  );
+  const previewBuyButton = previewDialog.querySelector(".preview-buy-button");
+  let activeTicketCard = null;
+  let countdownInterval = null;
+
+  function getEventDetails(ticketCard) {
+    const detailParagraphs = ticketCard.querySelectorAll(
+      ".ticket-preview-details p"
+    );
+    const details = {};
+
+    detailParagraphs.forEach((paragraph) => {
+      const label = paragraph.querySelector("strong").textContent
+        .replace(":", "")
+        .toLowerCase();
+      details[label] = paragraph.querySelector("strong").nextSibling.textContent
+        .trim();
+    });
+
+    return details;
+  }
+
+  function updateCountdown(eventDate) {
+    const countdownValue = previewDialog.querySelector(
+      ".preview-countdown-value"
+    );
+    const targetDate = new Date(eventDate);
+    const remaining = targetDate.getTime() - Date.now();
+
+    if (Number.isNaN(targetDate.getTime())) {
+      countdownValue.textContent = "Date to be confirmed";
+      return;
+    }
+
+    if (remaining <= 0) {
+      countdownValue.textContent = "This event has passed";
+      return;
+    }
+
+    const days = Math.floor(remaining / 86400000);
+    const hours = Math.floor((remaining % 86400000) / 3600000);
+    const minutes = Math.floor((remaining % 3600000) / 60000);
+    const seconds = Math.floor((remaining % 60000) / 1000);
+    countdownValue.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+  }
+
+  function openPurchasePage(ticketCard) {
+    const details = getEventDetails(ticketCard);
+    const params = new URLSearchParams({
+      title: ticketCard.querySelector(".ticket-title").textContent.trim(),
+      desc: ticketCard.querySelector(".ticket-description").textContent.trim(),
+      date: details.date || "",
+      location: details.location || "",
+      time: details.time || "",
+      host: details.host || "",
+    });
+
+    window.location.href = `purchase.html?${params.toString()}`;
+  }
+
+  document.querySelectorAll(".preview-button").forEach((button) => {
     button.addEventListener("click", function () {
       const ticketCard = this.closest(".ticket-card");
-      const title = ticketCard.querySelector(".ticket-title").textContent;
-      const description = ticketCard.querySelector(
-        ".ticket-description"
-      ).textContent;
-      const details = ticketCard.querySelector(
-        ".ticket-preview-details"
-      ).innerHTML;
+      const details = getEventDetails(ticketCard);
+      const banner = ticketCard.querySelector(".ticket-image");
 
-      alert(
-        `Event: ${title}\n\n${description}\n\nDetails:\n${details
-          .replace(/<strong>/g, "")
-          .replace(/<\/strong>/g, "")
-          .replace(/<p>/g, "")
-          .replace(/<\/p>/g, "\n")}`
+      activeTicketCard = ticketCard;
+      previewDialog.querySelector(".preview-banner").src = banner.src;
+      previewDialog.querySelector(".preview-banner").alt = banner.alt;
+      previewDialog.querySelector("#preview-title").textContent =
+        ticketCard.querySelector(".ticket-title").textContent.trim();
+      previewDialog.querySelector(".preview-description").textContent =
+        ticketCard.querySelector(".ticket-description").textContent.trim();
+      previewDialog.querySelector(".preview-date").textContent =
+        details.date || "To be announced";
+      previewDialog.querySelector(".preview-time").textContent =
+        details.time || "To be announced";
+      previewDialog.querySelector(".preview-location").textContent =
+        details.location || "To be announced";
+      previewDialog.querySelector(".preview-host").textContent =
+        details.host || "To be announced";
+
+      updateCountdown(details.date || "");
+      window.clearInterval(countdownInterval);
+      countdownInterval = window.setInterval(
+        () => updateCountdown(details.date || ""),
+        1000
       );
+      previewDialog.showModal();
+      closePreviewButton.focus();
     });
   });
 
-  // Get all buy ticket buttons
-  const buyButtons = document.querySelectorAll(".buy-ticket-button");
-  buyButtons.forEach((button) => {
+  document.querySelectorAll(".buy-ticket-button").forEach((button) => {
     button.addEventListener("click", function () {
-      const ticketCard = this.closest(".ticket-card");
-      const title = encodeURIComponent(
-        ticketCard.querySelector(".ticket-title").textContent
-      );
-      const description = encodeURIComponent(
-        ticketCard.querySelector(".ticket-description").textContent
-      );
-      const details = ticketCard.querySelector(
-        ".ticket-preview-details"
-      ).innerHTML;
-
-      // Extract date, location, time, host from details
-      const dateMatch = details.match(
-        /<p><strong>Date:<\/strong> ([^<]+)<\/p>/
-      );
-      const locationMatch = details.match(
-        /<p><strong>Location:<\/strong> ([^<]+)<\/p>/
-      );
-      const timeMatch = details.match(
-        /<p><strong>Time:<\/strong> ([^<]+)<\/p>/
-      );
-      const hostMatch = details.match(
-        /<p><strong>Host:<\/strong> ([^<]+)<\/p>/
-      );
-
-      const date = encodeURIComponent(dateMatch ? dateMatch[1] : "");
-      const location = encodeURIComponent(
-        locationMatch ? locationMatch[1] : ""
-      );
-      const time = encodeURIComponent(timeMatch ? timeMatch[1] : "");
-      const host = encodeURIComponent(hostMatch ? hostMatch[1] : "");
-
-      // Redirect to purchase page with event details
-      window.location.href = `purchase.html?title=${title}&desc=${description}&date=${date}&location=${location}&time=${time}&host=${host}`;
+      openPurchasePage(this.closest(".ticket-card"));
     });
+  });
+
+  previewBuyButton.addEventListener("click", function () {
+    if (activeTicketCard) {
+      openPurchasePage(activeTicketCard);
+    }
+  });
+
+  closePreviewButton.addEventListener("click", function () {
+    previewDialog.close();
+  });
+
+  previewDialog.addEventListener("click", function (event) {
+    if (event.target === previewDialog) {
+      previewDialog.close();
+    }
+  });
+
+  previewDialog.addEventListener("close", function () {
+    window.clearInterval(countdownInterval);
+    activeTicketCard = null;
   });
 });

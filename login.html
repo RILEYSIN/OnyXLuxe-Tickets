@@ -9,7 +9,7 @@
     />
     <title>Login - OnyXLuxe Tickets</title>
     <link
-      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="login.css" />
@@ -23,10 +23,16 @@
           <p>Welcome back! Please sign in.</p>
         </header>
 
-        <form class="login-form" novalidate>
+        <form class="login-form">
           <div class="input-group">
             <label for="email">Email</label>
-            <input type="email" id="email" placeholder="Enter your email" />
+            <input
+              type="email"
+              id="email"
+              placeholder="Enter your email"
+              autocomplete="email"
+              required
+            />
           </div>
           <div class="input-group">
             <label for="password">Password</label>
@@ -34,6 +40,8 @@
               type="password"
               id="password"
               placeholder="Enter your password"
+              autocomplete="current-password"
+              required
             />
           </div>
           <button type="submit" class="btn-primary">Login</button>
@@ -41,12 +49,12 @@
 
         <footer class="form-footer">
           <p>
-            <a href="#">Forgot your password?</a>
+            <a href="mailto:balsitoyosi07@gmail.com">Need help signing in?</a>
           </p>
           <p>
             Don't have an account? <a href="Signup.html">Sign up here</a>
-            <a href="index.html">continue as guest</a>
           </p>
+          <a class="guest-link" href="index.html">Continue as guest</a>
         </footer>
       </div>
     </main>

@@ -14,15 +14,20 @@ body {
   padding: 20px;
 }
 
+.wrapper {
+  width: 100%;
+  max-width: 440px;
+}
+
 /* The Responsive Card */
 .auth-card {
   background-color: #ffffff;
   width: 100%;
   max-width: 440px;
   padding: 40px;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e7ebf0;
+  border-radius: 16px;
+  box-shadow: 0 12px 32px rgba(20, 42, 68, 0.1);
 }
 
 /* Typography */
@@ -61,23 +66,26 @@ label {
 
 input {
   width: 100%;
-  padding: 12px 16px;
+  min-height: 48px;
+  padding: 12px 14px;
   border: 1px solid #d0d5dd;
   border-radius: 8px;
   font-size: 16px;
-  transition: all 0.2s;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 input:focus {
   outline: none;
   border-color: #007bff;
-  box-shadow: 0 0 0 4px rgba(16, 24, 40, 0.05);
+  box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.12);
 }
 
 /* Buttons */
 button {
   width: 100%;
+  min-height: 48px;
   padding: 12px;
+  border: 0;
   border-radius: 8px;
   font-size: 16px;
   font-weight: 600;
@@ -87,27 +95,25 @@ button {
   align-items: center;
   gap: 10px;
   margin-top: 12px;
+  transition: background-color 0.2s, transform 0.2s;
 }
 
 .btn-primary {
   background-color: dodgerblue;
   color: white;
-  border: none;
 }
 
-.btn-google {
-  background-color: white;
-  color: #344054;
-  border: 1px solid #d0d5dd;
-}
-
-/* Boxicon Styling */
-.btn-google i {
-  font-size: 20px;
+.btn-primary:hover {
+  background-color: #0069d9;
+  transform: translateY(-1px);
 }
 
 /* Footer */
 .form-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
   margin-top: 24px;
   text-align: center;
 }
@@ -115,6 +121,7 @@ button {
 .form-footer p {
   font-size: 14px;
   color: #666;
+  line-height: 1.6;
 }
 
 .form-footer a {
@@ -123,14 +130,17 @@ button {
   font-weight: 600;
 }
 
+.form-footer a:hover {
+  text-decoration: underline;
+}
+
 /* Mobile Adjustments */
 @media (max-width: 480px) {
-  .auth-card {
-    padding: 24px;
-    box-shadow: none; /* Cleaner look on small screens */
-    background-color: transparent;
-  }
   body {
-    background-color: #f4f7f6;
+    padding: 16px;
+  }
+
+  .auth-card {
+    padding: 28px 22px;
   }
 }
