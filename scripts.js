@@ -1,124 +1,110 @@
 document.addEventListener("DOMContentLoaded", function () {
+  const eventList = document.querySelector(".ticket-previews-container");
   const previewDialog = document.querySelector(".event-preview-dialog");
-  const closePreviewButton = previewDialog.querySelector(
-    ".preview-close-button"
-  );
+  if (!eventList || !previewDialog || !Array.isArray(window.EVENTS)) {
+    return;
+  }
+
+  const closeButton = previewDialog.querySelector(".preview-close-button");
   const previewBuyButton = previewDialog.querySelector(".preview-buy-button");
-  let activeTicketCard = null;
-  let countdownInterval = null;
+  let activeEvent = null;
 
-  function getEventDetails(ticketCard) {
-    const detailParagraphs = ticketCard.querySelectorAll(
-      ".ticket-preview-details p"
-    );
-    const details = {};
-
-    detailParagraphs.forEach((paragraph) => {
-      const label = paragraph.querySelector("strong").textContent
-        .replace(":", "")
-        .toLowerCase();
-      details[label] = paragraph.querySelector("strong").nextSibling.textContent
-        .trim();
-    });
-
-    return details;
+  function addFact(container, label, value) {
+    const paragraph = document.createElement("p");
+    const strong = document.createElement("strong");
+    strong.textContent = `${label}: `;
+    paragraph.append(strong, document.createTextNode(value));
+    container.append(paragraph);
   }
 
-  function updateCountdown(eventDate) {
-    const countdownValue = previewDialog.querySelector(
-      ".preview-countdown-value"
-    );
-    const targetDate = new Date(eventDate);
-    const remaining = targetDate.getTime() - Date.now();
-
-    if (Number.isNaN(targetDate.getTime())) {
-      countdownValue.textContent = "Date to be confirmed";
-      return;
-    }
-
-    if (remaining <= 0) {
-      countdownValue.textContent = "This event has passed";
-      return;
-    }
-
-    const days = Math.floor(remaining / 86400000);
-    const hours = Math.floor((remaining % 86400000) / 3600000);
-    const minutes = Math.floor((remaining % 3600000) / 60000);
-    const seconds = Math.floor((remaining % 60000) / 1000);
-    countdownValue.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+  function openPurchase(eventDetails) {
+    window.location.href = `purchase.html?event=${encodeURIComponent(eventDetails.id)}`;
   }
 
-  function openPurchasePage(ticketCard) {
-    const details = getEventDetails(ticketCard);
-    const params = new URLSearchParams({
-      title: ticketCard.querySelector(".ticket-title").textContent.trim(),
-      desc: ticketCard.querySelector(".ticket-description").textContent.trim(),
-      date: details.date || "",
-      location: details.location || "",
-      time: details.time || "",
-      host: details.host || "",
-    });
-
-    window.location.href = `purchase.html?${params.toString()}`;
+  function showEvent(eventDetails) {
+    activeEvent = eventDetails;
+    previewDialog.querySelector(".preview-banner").src = eventDetails.image;
+    previewDialog.querySelector(".preview-banner").alt = eventDetails.imageAlt;
+    previewDialog.querySelector("#preview-title").textContent = eventDetails.title;
+    previewDialog.querySelector(".preview-description").textContent =
+      eventDetails.description;
+    previewDialog.querySelector(".preview-date").textContent = eventDetails.date;
+    previewDialog.querySelector(".preview-time").textContent = eventDetails.time;
+    previewDialog.querySelector(".preview-location").textContent =
+      eventDetails.location;
+    previewDialog.querySelector(".preview-host").textContent = eventDetails.host;
+    previewDialog.querySelector(".preview-price strong").textContent =
+      `${window.formatNaira(eventDetails.price)} / person`;
+    previewDialog.showModal();
+    closeButton.focus();
   }
 
-  document.querySelectorAll(".preview-button").forEach((button) => {
-    button.addEventListener("click", function () {
-      const ticketCard = this.closest(".ticket-card");
-      const details = getEventDetails(ticketCard);
-      const banner = ticketCard.querySelector(".ticket-image");
+  function renderEvent(eventDetails) {
+    const card = document.createElement("article");
+    card.className = "ticket-card";
 
-      activeTicketCard = ticketCard;
-      previewDialog.querySelector(".preview-banner").src = banner.src;
-      previewDialog.querySelector(".preview-banner").alt = banner.alt;
-      previewDialog.querySelector("#preview-title").textContent =
-        ticketCard.querySelector(".ticket-title").textContent.trim();
-      previewDialog.querySelector(".preview-description").textContent =
-        ticketCard.querySelector(".ticket-description").textContent.trim();
-      previewDialog.querySelector(".preview-date").textContent =
-        details.date || "To be announced";
-      previewDialog.querySelector(".preview-time").textContent =
-        details.time || "To be announced";
-      previewDialog.querySelector(".preview-location").textContent =
-        details.location || "To be announced";
-      previewDialog.querySelector(".preview-host").textContent =
-        details.host || "To be announced";
+    const imageWrapper = document.createElement("div");
+    imageWrapper.className = "ticket-image-wrapper";
+    const image = document.createElement("img");
+    image.className = "ticket-image";
+    image.src = eventDetails.image;
+    image.alt = eventDetails.imageAlt;
+    image.loading = "lazy";
+    imageWrapper.append(image);
 
-      updateCountdown(details.date || "");
-      window.clearInterval(countdownInterval);
-      countdownInterval = window.setInterval(
-        () => updateCountdown(details.date || ""),
-        1000
-      );
-      previewDialog.showModal();
-      closePreviewButton.focus();
-    });
-  });
+    const details = document.createElement("div");
+    details.className = "ticket-details";
 
-  document.querySelectorAll(".buy-ticket-button").forEach((button) => {
-    button.addEventListener("click", function () {
-      openPurchasePage(this.closest(".ticket-card"));
-    });
-  });
+    const title = document.createElement("h3");
+    title.className = "ticket-title";
+    title.textContent = eventDetails.title;
+    const description = document.createElement("p");
+    description.className = "ticket-description";
+    description.textContent = eventDetails.description;
 
-  previewBuyButton.addEventListener("click", function () {
-    if (activeTicketCard) {
-      openPurchasePage(activeTicketCard);
+    const facts = document.createElement("div");
+    facts.className = "ticket-preview-details";
+    addFact(facts, "Date", eventDetails.date);
+    addFact(facts, "Location", eventDetails.location);
+    addFact(facts, "Time", eventDetails.time);
+    addFact(facts, "Host", eventDetails.host);
+
+    const price = document.createElement("p");
+    price.className = "ticket-price";
+    price.textContent = `${window.formatNaira(eventDetails.price)} per ticket`;
+
+    const previewButton = document.createElement("button");
+    previewButton.type = "button";
+    previewButton.className = "preview-button";
+    previewButton.textContent = "Preview Details";
+    previewButton.addEventListener("click", () => showEvent(eventDetails));
+
+    const buyButton = document.createElement("button");
+    buyButton.type = "button";
+    buyButton.className = "buy-ticket-button";
+    buyButton.textContent = "Buy Ticket";
+    buyButton.addEventListener("click", () => openPurchase(eventDetails));
+
+    details.append(title, description, facts, price, previewButton, buyButton);
+    card.append(imageWrapper, details);
+    eventList.append(card);
+  }
+
+  eventList.querySelectorAll(".ticket-card").forEach((card) => card.remove());
+  window.EVENTS.forEach(renderEvent);
+
+  closeButton.addEventListener("click", () => previewDialog.close());
+  previewBuyButton.addEventListener("click", () => {
+    if (activeEvent) {
+      openPurchase(activeEvent);
     }
   });
-
-  closePreviewButton.addEventListener("click", function () {
-    previewDialog.close();
-  });
-
-  previewDialog.addEventListener("click", function (event) {
+  previewDialog.addEventListener("click", (event) => {
     if (event.target === previewDialog) {
       previewDialog.close();
     }
   });
-
-  previewDialog.addEventListener("close", function () {
-    window.clearInterval(countdownInterval);
-    activeTicketCard = null;
+  previewDialog.addEventListener("close", () => {
+    activeEvent = null;
   });
 });

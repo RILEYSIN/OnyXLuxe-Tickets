@@ -5,13 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Purchase tickets securely at OnyXLuxe Tickets. Easy booking for your favorite events."
+      content="Guest checkout for OnyXLuxe Tickets. Reserve event tickets and continue to Flutterwave."
     />
-    <title>Purchase Ticket - OnyXLuxe Tickets</title>
+    <title>Guest Checkout - OnyXLuxe Tickets</title>
     <link rel="stylesheet" href="purchase.css" />
-    <!-- Reuse homepage CSS for consistency -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <link
@@ -20,153 +19,125 @@
     />
   </head>
   <body>
-    <div class="Header">
-      <a href="#" class="logo">OnyXLuxe</a>
-      <div class="header-right">
-        <a href="index.html" class="active">HOME</a>
-        <a href="index.html#target">TICKETS</a>
-        <a href="contact.html">CONTACTS</a>
-        <a href="login.html">LOGOUT</a>
-      </div>
-    </div>
+    <header class="Header">
+      <a href="index.html" class="logo">OnyXLuxe</a>
+      <nav class="header-right" aria-label="Main navigation">
+        <a href="index.html">HOME</a>
+        <a href="index.html#target">EVENTS</a>
+        <a href="contact.html">CONTACT</a>
+      </nav>
+    </header>
 
-    <section class="purchase-container">
-      <h1>Purchase Ticket</h1>
-      <div class="event-details">
-        <h2 id="event-title">Event Title</h2>
-        <p id="event-description">Event description will be loaded here.</p>
-        <p><strong>Date:</strong> <span id="event-date"></span></p>
-        <p><strong>Location:</strong> <span id="event-location"></span></p>
-        <p><strong>Time:</strong> <span id="event-time"></span></p>
-        <p><strong>Host:</strong> <span id="event-host"></span></p>
-        <p><strong>Price per Ticket:</strong> ₦5,000</p>
-      </div>
+    <main class="checkout-layout">
+      <section class="purchase-container" aria-labelledby="checkout-heading">
+        <a class="back-link" href="index.html#target">&larr; Back to events</a>
+        <div id="event-error" class="form-message" role="alert" hidden></div>
 
-      <form class="purchase-form">
-        <label for="name">Full Name</label>
-        <input
-          type="text"
-          id="name"
-          placeholder="Enter your full name"
-          required
-        />
+        <div id="checkout-content" hidden>
+          <p class="checkout-eyebrow">GUEST CHECKOUT</p>
+          <h1 id="checkout-heading">Your event, your way</h1>
 
-        <label for="email">Email</label>
-        <input
-          type="email"
-          id="email"
-          placeholder="Enter your email"
-          required
-        />
+          <section class="event-details" aria-label="Selected event">
+            <img id="event-image" class="checkout-event-image" src="" alt="" />
+            <div class="checkout-event-copy">
+              <h2 id="event-title"></h2>
+              <p id="event-description"></p>
+              <dl class="checkout-event-facts">
+                <div><dt>Date</dt><dd id="event-date"></dd></div>
+                <div><dt>Time</dt><dd id="event-time"></dd></div>
+                <div><dt>Venue</dt><dd id="event-location"></dd></div>
+                <div><dt>Presented by</dt><dd id="event-host"></dd></div>
+              </dl>
+              <p class="unit-price">
+                <strong id="unit-price"></strong> per ticket
+              </p>
+            </div>
+          </section>
 
-        <label for="quantity">Quantity</label>
-        <input
-          type="number"
-          id="quantity"
-          min="1"
-          max="10"
-          value="1"
-          required
-        />
+          <form class="purchase-form" novalidate>
+            <div class="checkout-form-heading">
+              <h2>Attendee details</h2>
+              <p>No account needed. Your details stay in this browser.</p>
+            </div>
 
-        <div class="total-price">
-          <p>
-            <strong>Total Price: ₦<span id="total">5000</span></strong>
-          </p>
+            <div class="form-field">
+              <label for="name">Full name <span aria-hidden="true">*</span></label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                autocomplete="name"
+                maxlength="100"
+                required
+                placeholder="e.g. Ada Okafor"
+              />
+            </div>
+
+            <div class="form-field">
+              <label for="email">Email address <span aria-hidden="true">*</span></label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                autocomplete="email"
+                maxlength="254"
+                required
+                placeholder="you@example.com"
+              />
+              <small>Use the email address where you want to receive payment updates.</small>
+            </div>
+
+            <div class="form-field">
+              <label for="phone">Phone number <span aria-hidden="true">*</span></label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                autocomplete="tel"
+                inputmode="tel"
+                maxlength="20"
+                required
+                placeholder="+234 801 234 5678"
+              />
+            </div>
+
+            <div class="form-field">
+              <label for="quantity">Number of tickets <span aria-hidden="true">*</span></label>
+              <input
+                type="number"
+                id="quantity"
+                name="quantity"
+                min="1"
+                max="10"
+                step="1"
+                value="1"
+                required
+              />
+            </div>
+
+            <div class="checkout-total" aria-live="polite">
+              <span>Total</span>
+              <strong id="total-price"></strong>
+            </div>
+
+            <p class="payment-note">
+              You’ll continue to Flutterwave to pay. This site does not handle
+              card details or confirm payments.
+            </p>
+            <button type="submit" class="checkout-button">
+              Proceed to payment <span aria-hidden="true">&rarr;</span>
+            </button>
+            <p id="checkout-message" class="form-message" role="status" aria-live="polite"></p>
+          </form>
         </div>
+      </section>
+    </main>
 
-        <label for="payment">Payment Method</label>
-        <select id="payment" required>
-          <option value="">Select Payment Method</option>
-          <option value="card">Credit/Debit Card</option>
-          <option value="bank">Bank Transfer</option>
-          <option value="paypal">PayPal</option>
-        </select>
-
-        <button type="submit">Complete Purchase</button>
-      </form>
-    </section>
-
-    <footer>
-      <div class="footer-container">
-        <div class="footer-social">
-          <a href="mailto:balsitoyosi07@gmail.com" target="_blank"
-            ><i class="bx bxl-gmail" aria-label="Gmail"></i
-          ></a>
-          <a href="07065632753"
-            ><i class="bx bx-phone" aria-label="Phone"></i
-          ></a>
-          <a href="https://wa.me/2349044031130" target="_blank"
-            ><i class="bx bxl-whatsapp" aria-label="WhatsApp"></i
-          ></a>
-          <a
-            href="https://www.linkedin.com/in/balsit-adedayo-2b34b325a/?trk=opento_sprofile_topcard"
-            target="_blank"
-            ><i class="bx bxl-linkedin" aria-label="LinkedIn"></i
-          ></a>
-          <a href="https://github.com/RILEYSIN" target="_blank"
-            ><i class="bx bxl-github" aria-label="GitHub"></i
-          ></a>
-        </div>
-        <div class="footer-links">
-          <a href="index.html">Home</a>
-          <a href="#">About</a>
-          <a href="contact.html">Contact Us</a>
-        </div>
-        <p class="footer-copyright">
-          &copy; 2025 OnyXLuxe. All rights reserved.
-        </p>
-      </div>
+    <footer class="checkout-footer">
+      <p>Need help? <a href="mailto:balsitoyosi07@gmail.com">Contact OnyXLuxe support</a></p>
     </footer>
 
-    <script>
-      // Get event details from URL parameters (passed from homepage)
-      const urlParams = new URLSearchParams(window.location.search);
-      const eventTitle = urlParams.get("title") || "Sample Event";
-      const eventDesc = urlParams.get("desc") || "Sample description";
-      const eventDate = urlParams.get("date") || "Sample date";
-      const eventLocation = urlParams.get("location") || "Sample location";
-      const eventTime = urlParams.get("time") || "Sample time";
-      const eventHost = urlParams.get("host") || "Sample host";
-
-      document.getElementById("event-title").textContent = eventTitle;
-      document.getElementById("event-description").textContent = eventDesc;
-      document.getElementById("event-date").textContent = eventDate;
-      document.getElementById("event-location").textContent = eventLocation;
-      document.getElementById("event-time").textContent = eventTime;
-      document.getElementById("event-host").textContent = eventHost;
-
-      // Update total price based on quantity
-      const quantityInput = document.getElementById("quantity");
-      const totalSpan = document.getElementById("total");
-      const pricePerTicket = 5000;
-
-      quantityInput.addEventListener("input", function () {
-        const quantity = parseInt(this.value) || 1;
-        totalSpan.textContent = (quantity * pricePerTicket).toLocaleString();
-      });
-
-      // Form submission
-      document
-        .querySelector(".purchase-form")
-        .addEventListener("submit", function (event) {
-          event.preventDefault();
-          const name = document.getElementById("name").value.trim();
-          const email = document.getElementById("email").value.trim();
-          const quantity = document.getElementById("quantity").value;
-          const payment = document.getElementById("payment").value;
-
-          if (!name || !email || !quantity || !payment) {
-            alert("Please fill in all fields.");
-            return;
-          }
-
-          alert(
-            `Purchase successful!\n\nEvent: ${eventTitle}\nName: ${name}\nEmail: ${email}\nQuantity: ${quantity}\nTotal: ₦${totalSpan.textContent}\nPayment: ${payment}\n\n(This is a demo - no real transaction occurred)`
-          );
-          // In a real app, redirect to confirmation page or send data to server
-          window.location.href = "index.html";
-        });
-    </script>
+    <script src="events.js"></script>
+    <script src="purchase.js"></script>
   </body>
 </html>

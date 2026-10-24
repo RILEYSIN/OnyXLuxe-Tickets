@@ -261,6 +261,20 @@ body {
   flex-grow: 1; /* Allows description to take available space */
 }
 
+.ticket-price {
+  margin: 0 0 16px;
+  color: #173a67;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.event-list-intro {
+  width: 100%;
+  margin-top: -28px;
+  color: #5d6675;
+  text-align: center;
+}
+
 /* Styles for the preview details container */
 .ticket-preview-details {
   text-align: left;

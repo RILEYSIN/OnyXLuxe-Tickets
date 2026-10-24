@@ -389,3 +389,327 @@ footer {
     padding: 15px;
   }
 }
+
+.checkout-layout,
+.confirmation-layout {
+  width: min(100% - 32px, 980px);
+  margin: 40px auto;
+}
+
+.purchase-container,
+.confirmation-card {
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: clamp(22px, 5vw, 48px);
+  border: 1px solid #e8edf4;
+  border-radius: 22px;
+  background: #fff;
+  box-shadow: 0 18px 50px rgba(20, 39, 67, 0.1);
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 24px;
+  color: #1d5fae;
+  font-weight: 600;
+}
+
+.checkout-eyebrow {
+  margin-bottom: 8px;
+  color: #1967b3;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.purchase-container h1,
+.confirmation-card h1 {
+  margin: 0 0 24px;
+  color: #17263c;
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  line-height: 1.15;
+  text-align: left;
+}
+
+.event-details {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 22px;
+  margin-bottom: 32px;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid #e5eaf1;
+  border-radius: 16px;
+  background: #f8fafc;
+}
+
+.checkout-event-image {
+  width: 100%;
+  height: 100%;
+  min-height: 230px;
+  object-fit: cover;
+}
+
+.checkout-event-copy {
+  padding: 20px 20px 20px 0;
+}
+
+.checkout-event-copy h2 {
+  margin-bottom: 8px;
+  color: #1b2b42;
+  font-size: 1.35rem;
+  line-height: 1.25;
+}
+
+.checkout-event-copy > p {
+  margin-bottom: 14px;
+  color: #566276;
+}
+
+.checkout-event-facts {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.checkout-event-facts div {
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  gap: 8px;
+}
+
+.checkout-event-facts dt {
+  color: #647188;
+}
+
+.checkout-event-facts dd {
+  color: #24364e;
+  font-weight: 600;
+}
+
+.unit-price {
+  color: #142f51 !important;
+  font-weight: 700;
+}
+
+.checkout-form-heading {
+  margin-bottom: 4px;
+}
+
+.checkout-form-heading h2 {
+  color: #17263c;
+  font-size: 1.25rem;
+}
+
+.checkout-form-heading p,
+.form-field small {
+  color: #677488;
+  font-size: 0.9rem;
+}
+
+.purchase-form {
+  gap: 18px;
+}
+
+.form-field {
+  display: grid;
+  gap: 7px;
+}
+
+.form-field label {
+  margin: 0;
+  color: #273a53;
+  font-size: 0.94rem;
+}
+
+.form-field label span {
+  color: #bd2c3d;
+}
+
+.purchase-form input {
+  max-width: none;
+  min-height: 48px;
+  border-color: #d6deea;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.purchase-form input:focus-visible {
+  outline: 3px solid rgba(21, 105, 190, 0.2);
+  border-color: #1967b3;
+}
+
+.checkout-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  border-top: 1px solid #e5eaf1;
+  border-bottom: 1px solid #e5eaf1;
+  color: #34445b;
+}
+
+.checkout-total strong {
+  color: #102b4e;
+  font-size: 1.35rem;
+}
+
+.payment-note {
+  padding: 13px 15px;
+  border-radius: 10px;
+  background: #f0f6fc;
+  color: #41556e;
+  font-size: 0.9rem;
+}
+
+.purchase-form .checkout-button,
+.checkout-button {
+  display: flex;
+  width: 100%;
+  max-width: none;
+  min-height: 52px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 0;
+  border: 0;
+  border-radius: 11px;
+  background: #1769aa;
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.purchase-form .checkout-button:hover,
+.checkout-button:hover {
+  background: #10578f;
+}
+
+.form-message {
+  margin: 0;
+  color: #9b2b2b;
+  font-size: 0.92rem;
+}
+
+.form-message:empty {
+  display: none;
+}
+
+.checkout-footer {
+  padding: 10px 16px 32px;
+  color: #68768a;
+  text-align: center;
+}
+
+.checkout-footer a,
+.checkout-support a {
+  color: #165f9f;
+  font-weight: 600;
+}
+
+.confirmation-card {
+  max-width: 680px;
+  text-align: center;
+}
+
+.confirmation-icon {
+  display: grid;
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 20px;
+  place-items: center;
+  border-radius: 50%;
+  background: #eaf2fb;
+  color: #1d5f9e;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.confirmation-card h1 {
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.confirmation-summary {
+  color: #566276;
+}
+
+.payment-instructions {
+  margin: 26px 0 18px;
+  padding: 22px;
+  border-radius: 14px;
+  background: #f6f8fb;
+  text-align: left;
+}
+
+.payment-instructions h2 {
+  margin-bottom: 12px;
+  color: #1b2b42;
+  font-size: 1.1rem;
+}
+
+.payment-instructions ol {
+  display: grid;
+  gap: 10px;
+  padding-left: 22px;
+  color: #4d5b6f;
+}
+
+.payment-disclaimer {
+  margin-bottom: 22px;
+  color: #795d1b;
+  font-size: 0.9rem;
+}
+
+.confirmation-home {
+  margin: 0 auto;
+}
+
+.checkout-support {
+  margin-top: 20px;
+  color: #68768a;
+}
+
+@media (max-width: 640px) {
+  .checkout-layout,
+  .confirmation-layout {
+    width: min(100% - 20px, 980px);
+    margin: 20px auto;
+  }
+
+  .purchase-container,
+  .confirmation-card {
+    padding: 20px 16px;
+    border-radius: 16px;
+  }
+
+  .event-details {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .checkout-event-image {
+    height: 190px;
+    min-height: 0;
+  }
+
+  .checkout-event-copy {
+    padding: 18px;
+  }
+
+  .checkout-event-facts div {
+    grid-template-columns: 82px 1fr;
+  }
+
+  .purchase-form {
+    gap: 16px;
+  }
+
+  .payment-instructions {
+    padding: 17px;
+  }
+}
