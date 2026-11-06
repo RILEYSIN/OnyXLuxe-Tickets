@@ -72,6 +72,19 @@ body {
   gap: 15px; /* Space between navigation links */
 }
 
+.header-right [hidden] {
+  display: none !important;
+}
+
+.auth-nav-status {
+  color: #8b2e24;
+  font-size: 0.75rem;
+}
+
+.auth-nav-status[hidden] {
+  display: none;
+}
+
 /* Media Query for Small Screens (e.g., up to 768px wide) */
 @media screen and (max-width: 768px) {
   .Header {

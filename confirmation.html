@@ -21,6 +21,10 @@
         <a href="index.html">HOME</a>
         <a href="index.html#target">EVENTS</a>
         <a href="contact.html">CONTACT</a>
+        <a href="login.html" data-auth-guest>SIGN IN</a>
+        <a href="signup.html" data-auth-guest>SIGN UP</a>
+        <span class="auth-nav-status" data-auth-status role="status" aria-live="polite" hidden></span>
+        <a href="#" data-auth-logout hidden>LOG OUT</a>
       </nav>
     </header>
 
@@ -53,7 +57,10 @@
         </p>
       </section>
     </main>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-client.js"></script>
     <script src="events.js"></script>
     <script src="confirmation.js"></script>
+    <script src="site-auth.js"></script>
   </body>
 </html>

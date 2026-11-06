@@ -1,4 +1,4 @@
-window.EVENTS = [
+const EVENTS = [
   {
     id: "concert-night-live",
     title: "Concert Night Live",
@@ -154,10 +154,15 @@ window.EVENTS = [
   },
 ];
 
-window.formatNaira = function (amount) {
-  return new Intl.NumberFormat("en-NG", {
-    style: "currency",
-    currency: "NGN",
-    maximumFractionDigits: 0,
-  }).format(amount);
-};
+if (typeof module !== "undefined" && module.exports) {
+  module.exports = EVENTS;
+} else {
+  window.EVENTS = EVENTS;
+  window.formatNaira = function (amount) {
+    return new Intl.NumberFormat("en-NG", {
+      style: "currency",
+      currency: "NGN",
+      maximumFractionDigits: 0,
+    }).format(amount);
+  };
+}

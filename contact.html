@@ -19,11 +19,15 @@
   <body>
     <div class="Header">
       <a href="#" class="logo">OnyXLuxe</a>
-      <div class="header-right">
+      <nav class="header-right" aria-label="Main navigation">
         <a href="index.html">HOME</a>
         <a href="index.html#target">TICKETS</a>
         <a href="contact.html" class="active">CONTACTS</a>
-      </div>
+        <a href="login.html" data-auth-guest>SIGN IN</a>
+        <a href="signup.html" data-auth-guest>SIGN UP</a>
+        <span class="auth-nav-status" data-auth-status role="status" aria-live="polite" hidden></span>
+        <a href="#" data-auth-logout hidden>LOG OUT</a>
+      </nav>
     </div>
     <div class="contact-container">
       <div class="contact-form-wrapper">
@@ -81,6 +85,9 @@
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
     />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-client.js"></script>
+    <script src="site-auth.js"></script>
     <script>
       document
         .querySelector("form")

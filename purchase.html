@@ -25,6 +25,10 @@
         <a href="index.html">HOME</a>
         <a href="index.html#target">EVENTS</a>
         <a href="contact.html">CONTACT</a>
+        <a href="login.html" data-auth-guest>SIGN IN</a>
+        <a href="signup.html" data-auth-guest>SIGN UP</a>
+        <span class="auth-nav-status" data-auth-status role="status" aria-live="polite" hidden></span>
+        <a href="#" data-auth-logout hidden>LOG OUT</a>
       </nav>
     </header>
 
@@ -115,20 +119,67 @@
               />
             </div>
 
+            <fieldset class="payment-method-field">
+              <legend>Payment method</legend>
+              <label class="payment-method-option">
+                <input
+                  type="radio"
+                  name="payment-method"
+                  value="bank-transfer"
+                  checked
+                />
+                <span>Bank transfer</span>
+              </label>
+              <label class="payment-method-option">
+                <input
+                  type="radio"
+                  name="payment-method"
+                  value="payment-link"
+                />
+                <span>Flutterwave payment link</span>
+              </label>
+            </fieldset>
+
             <div class="checkout-total" aria-live="polite">
               <span>Total</span>
               <strong id="total-price"></strong>
             </div>
 
             <p class="payment-note">
-              You’ll continue to Flutterwave to pay. This site does not handle
-              card details or confirm payments.
+              Flutterwave will provide temporary bank account details for your
+              transfer. Use the exact amount shown; your payment is not
+              confirmed until Flutterwave verifies it.
             </p>
             <button type="submit" class="checkout-button">
-              Proceed to payment <span aria-hidden="true">&rarr;</span>
+              Get bank transfer details <span aria-hidden="true">&rarr;</span>
             </button>
             <p id="checkout-message" class="form-message" role="status" aria-live="polite"></p>
           </form>
+
+          <section
+            id="bank-transfer-details"
+            class="bank-transfer-details"
+            aria-labelledby="bank-transfer-heading"
+            hidden
+          >
+            <p class="checkout-eyebrow">BANK TRANSFER</p>
+            <h2 id="bank-transfer-heading">Transfer to this temporary account</h2>
+            <p>
+              Send the exact amount before the account expires. Do not reuse
+              these details for another purchase.
+            </p>
+            <dl class="transfer-facts">
+              <div><dt>Bank</dt><dd id="transfer-bank"></dd></div>
+              <div><dt>Account number</dt><dd id="transfer-account"></dd></div>
+              <div><dt>Amount</dt><dd id="transfer-amount"></dd></div>
+              <div><dt>Payment reference</dt><dd id="transfer-reference"></dd></div>
+              <div><dt>Account expires</dt><dd id="transfer-expiration"></dd></div>
+            </dl>
+            <p id="transfer-note" class="transfer-note"></p>
+            <p id="transfer-status" class="transfer-status" role="status" aria-live="polite">
+              Waiting for Flutterwave to confirm your transfer.
+            </p>
+          </section>
         </div>
       </section>
     </main>
@@ -137,7 +188,10 @@
       <p>Need help? <a href="mailto:balsitoyosi07@gmail.com">Contact OnyXLuxe support</a></p>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-client.js"></script>
     <script src="events.js"></script>
     <script src="purchase.js"></script>
+    <script src="site-auth.js"></script>
   </body>
 </html>

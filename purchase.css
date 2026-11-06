@@ -73,6 +73,19 @@ body {
   gap: 15px; /* Space between navigation links */
 }
 
+.header-right [hidden] {
+  display: none !important;
+}
+
+.auth-nav-status {
+  color: #8b2e24;
+  font-size: 0.75rem;
+}
+
+.auth-nav-status[hidden] {
+  display: none;
+}
+
 /* Media Query for Small Screens (e.g., up to 768px wide) */
 @media screen and (max-width: 768px) {
   .Header {
@@ -508,6 +521,39 @@ footer {
   font-size: 0.9rem;
 }
 
+.payment-method-field {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid #d6deea;
+  border-radius: 10px;
+}
+
+.payment-method-field legend {
+  padding: 0 5px;
+  color: #273a53;
+  font-weight: 600;
+}
+
+.payment-method-option {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #34445b;
+  cursor: pointer;
+}
+
+.purchase-form .payment-method-option input {
+  width: 17px;
+  max-width: 17px;
+  min-height: 17px;
+  margin: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  accent-color: #1769aa;
+}
+
 .purchase-form {
   gap: 18px;
 }
@@ -597,6 +643,63 @@ footer {
 
 .form-message:empty {
   display: none;
+}
+
+.bank-transfer-details {
+  margin-top: 24px;
+  padding: 24px;
+  border: 1px solid #d6e5f4;
+  border-radius: 14px;
+  background: #f5f9fd;
+}
+
+.bank-transfer-details[hidden] {
+  display: none;
+}
+
+.bank-transfer-details h2 {
+  margin-bottom: 8px;
+  color: #17263c;
+}
+
+.bank-transfer-details > p:not(.checkout-eyebrow) {
+  color: #566276;
+}
+
+.transfer-facts {
+  display: grid;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.transfer-facts div {
+  display: grid;
+  grid-template-columns: minmax(130px, 0.7fr) 1.3fr;
+  gap: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #dce5ef;
+}
+
+.transfer-facts dt {
+  color: #647188;
+}
+
+.transfer-facts dd {
+  overflow-wrap: anywhere;
+  color: #17263c;
+  font-weight: 700;
+}
+
+.transfer-note {
+  margin: 0 0 12px;
+  color: #34445b;
+  font-weight: 600;
+}
+
+.transfer-status {
+  margin: 0;
+  color: #345b26;
+  font-weight: 600;
 }
 
 .checkout-footer {

@@ -21,11 +21,15 @@
   <body>
     <div class="Header">
       <a href="#" class="logo">OnyXLuxe</a>
-      <div class="header-right">
+      <nav class="header-right" aria-label="Main navigation">
         <a href="index.html" class="active">HOME</a>
         <a href="#target">TICKETS</a>
         <a href="contact.html">CONTACTS</a>
-      </div>
+        <a href="login.html" data-auth-guest>SIGN IN</a>
+        <a href="signup.html" data-auth-guest>SIGN UP</a>
+        <span class="auth-nav-status" data-auth-status role="status" aria-live="polite" hidden></span>
+        <a href="#" data-auth-logout hidden>LOG OUT</a>
+      </nav>
     </div>
 
     <section class="welcome-banner-section">
@@ -116,7 +120,10 @@
       </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-client.js"></script>
     <script src="events.js"></script>
     <script src="scripts.js"></script>
+    <script src="site-auth.js"></script>
   </body>
 </html>
