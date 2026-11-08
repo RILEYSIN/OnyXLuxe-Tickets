@@ -14,7 +14,7 @@
       rel="stylesheet"
     />
   </head>
-  <body>
+  <body class="auth-portal">
     <header class="Header">
       <a href="index.html" class="logo">OnyXLuxe</a>
       <nav class="header-right" aria-label="Main navigation">
@@ -29,13 +29,31 @@
     </header>
 
     <main class="auth-main">
-      <section class="auth-card" aria-labelledby="auth-heading">
-        <p class="auth-eyebrow">JOIN ONYXLUXE</p>
-        <h1 id="auth-heading">Create your account</h1>
-        <p class="auth-intro">
-          Add your details below to get started.
-        </p>
-        <form class="auth-form" data-auth-form="signup">
+      <div class="auth-layout">
+        <aside class="auth-story" aria-label="OnyXLuxe Tickets">
+          <div class="story-topline">
+            <span class="story-mark" aria-hidden="true">O</span>
+            <span>THE ONYXLUXE EXPERIENCE</span>
+          </div>
+          <div class="story-copy">
+            <p class="story-kicker">YOUR FRONT ROW STARTS HERE</p>
+            <h2>More nights<br />worth talking<br /><em>about.</em></h2>
+            <p>Create your account and keep the moments you love within easy reach.</p>
+          </div>
+          <div class="story-ticket" aria-hidden="true">
+            <span class="ticket-star">✳</span>
+            <span class="ticket-copy"><strong>MAKE IT A NIGHT</strong><small>DISCOVER. BOOK. EXPERIENCE.</small></span>
+            <span class="ticket-stub">OXL<br />✦</span>
+          </div>
+        </aside>
+
+        <section class="auth-card" aria-labelledby="auth-heading">
+          <p class="auth-eyebrow">JOIN ONYXLUXE</p>
+          <h1 id="auth-heading">Create your account</h1>
+          <p class="auth-intro">
+            Add your details below to get started.
+          </p>
+          <form class="auth-form" data-auth-form="signup">
           <div class="form-field">
             <label for="username">Username</label>
             <input
@@ -141,12 +159,13 @@
 
           <button type="submit">Create account</button>
           <p class="form-feedback" role="status" aria-live="polite"></p>
-        </form>
+          </form>
 
-        <p class="auth-switch">
-          Already have an account? <a href="login.html">Sign in</a>
-        </p>
-      </section>
+          <p class="auth-switch">
+            Already have an account? <a href="login.html">Sign in</a>
+          </p>
+        </section>
+      </div>
     </main>
 
     <footer class="auth-footer">
