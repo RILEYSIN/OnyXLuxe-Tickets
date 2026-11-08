@@ -162,12 +162,69 @@ footer {
   object-position: center;
 }
 
+.event-marquee {
+  position: relative;
+  width: 100%;
+  margin-top: 20px;
+  overflow: hidden;
+  border-top: 1px solid rgba(215, 183, 127, 0.18);
+  border-bottom: 1px solid rgba(215, 183, 127, 0.18);
+  background: var(--night);
+  color: var(--gold-light);
+}
+
+.marquee-accessible-text {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+.marquee-track {
+  width: max-content;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  animation: event-marquee-scroll 36s linear infinite;
+}
+
+.event-marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+.marquee-group {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  padding-right: 30px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  white-space: nowrap;
+}
+
+.marquee-star {
+  color: #fff;
+  font-size: 0.8rem;
+}
+
+@keyframes event-marquee-scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 .ticket-previews-container {
   width: min(100%, 1320px);
   align-self: center;
   gap: 24px;
   margin-top: 0;
-  padding: 68px 32px 72px;
+  padding: 48px 32px 72px;
   background: transparent;
 }
 
@@ -614,7 +671,7 @@ footer {
   }
 
   .ticket-previews-container {
-    padding: 52px 24px;
+    padding: 40px 24px 52px;
   }
 
   .contact-container {
@@ -657,7 +714,7 @@ footer {
   }
 
   .ticket-previews-container {
-    padding: 42px 16px;
+    padding: 34px 16px 42px;
     gap: 20px;
   }
 
@@ -688,6 +745,24 @@ footer {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    width: 100%;
+    justify-content: center;
+    animation: none;
+  }
+
+  .marquee-group {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px 14px;
+    padding: 12px 16px;
+    white-space: normal;
+  }
+
+  .marquee-group + .marquee-group {
+    display: none;
+  }
+
   *,
   *::before,
   *::after {
