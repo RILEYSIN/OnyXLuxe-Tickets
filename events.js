@@ -10,7 +10,7 @@ const EVENTS = [
     host: "OnyXLuxe Concerts",
     price: 5000,
     image:
-      "https://placehold.co/900x600/007bff/ffffff?text=Concert+Night",
+      "https://placehold.co/900x600/242c36/d7b77f?text=Concert+Night",
     imageAlt: "Concert Night Live",
     paymentLinksByQuantity: {
       1: "",
@@ -27,7 +27,7 @@ const EVENTS = [
     host: "Premier Sports League",
     price: 5000,
     image:
-      "https://placehold.co/900x600/28a745/ffffff?text=Sports+Event",
+      "https://placehold.co/900x600/242c36/d7b77f?text=Sports+Event",
     imageAlt: "Grand Soccer Final",
     paymentLinksByQuantity: {
       1: "",
@@ -44,7 +44,7 @@ const EVENTS = [
     host: "Tech Innovators Hub",
     price: 5000,
     image:
-      "https://placehold.co/900x600/ffc107/333333?text=Tech+Summit",
+      "https://placehold.co/900x600/242c36/d7b77f?text=Tech+Summit",
     imageAlt: "Innovate Tech Summit",
     paymentLinksByQuantity: {
       1: "",
@@ -61,7 +61,7 @@ const EVENTS = [
     host: "Comedy Central Africa",
     price: 5000,
     image:
-      "https://placehold.co/900x600/6f42c1/ffffff?text=Comedy+Show",
+      "https://placehold.co/900x600/242c36/d7b77f?text=Comedy+Show",
     imageAlt: "Laugh Out Loud Comedy",
     paymentLinksByQuantity: {
       1: "",
@@ -78,7 +78,7 @@ const EVENTS = [
     host: "Art Collective Nigeria",
     price: 5000,
     image:
-      "https://placehold.co/900x600/dc3545/ffffff?text=Art+Exhibition",
+      "https://placehold.co/900x600/242c36/d7b77f?text=Art+Exhibition",
     imageAlt: "Modern Art Expo",
     paymentLinksByQuantity: {
       1: "",
@@ -95,7 +95,7 @@ const EVENTS = [
     host: "Culinary Guild of Nigeria",
     price: 5000,
     image:
-      "https://placehold.co/900x600/17a2b8/ffffff?text=Food+Festival",
+      "https://placehold.co/900x600/242c36/d7b77f?text=Food+Festival",
     imageAlt: "Gourmet Food Festival",
     paymentLinksByQuantity: {
       1: "",
@@ -112,7 +112,7 @@ const EVENTS = [
     host: "National Theatre Troupe",
     price: 5000,
     image:
-      "https://placehold.co/900x600/fd7e14/ffffff?text=Theater+Play",
+      "https://placehold.co/900x600/242c36/d7b77f?text=Theater+Play",
     imageAlt: "The Grand Play",
     paymentLinksByQuantity: {
       1: "",
@@ -129,7 +129,7 @@ const EVENTS = [
     host: "African Gaming Federation",
     price: 5000,
     image:
-      "https://placehold.co/900x600/20c997/ffffff?text=Gaming+Expo",
+      "https://placehold.co/900x600/242c36/d7b77f?text=Gaming+Expo",
     imageAlt: "E-Sports Gaming Summit",
     paymentLinksByQuantity: {
       1: "",
@@ -146,7 +146,7 @@ const EVENTS = [
     host: "Lagos Fashion Council",
     price: 5000,
     image:
-      "https://placehold.co/900x600/6610f2/ffffff?text=Fashion+Show",
+      "https://placehold.co/900x600/242c36/d7b77f?text=Fashion+Show",
     imageAlt: "Spring Fashion Gala",
     paymentLinksByQuantity: {
       1: "",

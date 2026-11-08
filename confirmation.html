@@ -9,6 +9,8 @@
     />
     <title>Payment Information - OnyXLuxe Tickets</title>
     <link rel="stylesheet" href="purchase.css" />
+    <link rel="stylesheet" href="site-theme.css" />
+    <link rel="stylesheet" href="mobile-nav.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
@@ -17,7 +19,10 @@
   <body>
     <header class="Header">
       <a href="index.html" class="logo">OnyXLuxe</a>
-      <nav class="header-right" aria-label="Main navigation">
+      <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-controls="site-navigation" aria-expanded="false" data-menu-toggle>
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="header-right" id="site-navigation" aria-label="Main navigation" data-menu>
         <a href="index.html">HOME</a>
         <a href="index.html#target">EVENTS</a>
         <a href="contact.html">CONTACT</a>
@@ -61,6 +66,7 @@
     <script src="supabase-client.js"></script>
     <script src="events.js"></script>
     <script src="confirmation.js"></script>
+    <script src="mobile-nav.js"></script>
     <script src="site-auth.js"></script>
   </body>
 </html>
